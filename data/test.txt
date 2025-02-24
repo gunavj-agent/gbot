@@ -1,0 +1,9 @@
+This is a test document for our chatbot.
+It contains some sample text that we can use to test the document processing and retrieval capabilities.
+The chatbot should be able to understand and answer questions about this content.
+
+Key features of our chatbot:
+1. Document processing with Langchain
+2. Vector embeddings with HuggingFace
+3. Efficient vector storage using FAISS
+4. Natural language understanding with LLaMA 2
