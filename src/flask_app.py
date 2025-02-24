@@ -42,7 +42,7 @@ def init_llm():
     if llm is None:
         print("Initializing new LLaMA model instance")
         llm = Llama(
-            model_path="models/llama-2-7b-chat.gguf",
+            model_path="../models/llama-2-7b-chat.gguf",
             n_ctx=1024,          # Increased context window
             n_threads=os.cpu_count(),  # Use all available CPU cores
             n_batch=32,          # Set batch size
@@ -385,7 +385,8 @@ def search_vector_route():
     if vector_store is None:
         return jsonify({"error": "Vector store not initialized."}), 500
     
-    query = request.form['query']
+    data = request.get_json()
+    query = data.get('query')
     try:
         results = vector_store.similarity_search(query, k=5)
         return jsonify([{"content": doc.page_content, "metadata": doc.metadata} for doc in results])
@@ -447,8 +448,8 @@ if __name__ == '__main__':
         print("Step 2: LLaMA model initialized successfully")
         
         # Run on port 8000
-        print("Step 3: Starting web server on http://localhost:8000")
+        print("Step 3: Starting web server on http://localhost:3000")
         # Allow connections from any host
-        app.run(host='0.0.0.0', port=8000, debug=True)
+        app.run(host='0.0.0.0', port=3000, debug=True)
     except Exception as e:
         print(f"Error starting server: {str(e)}")
